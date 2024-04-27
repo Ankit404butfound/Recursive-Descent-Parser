@@ -58,10 +58,14 @@ class Parser:
     
     def parseSum(self):
         factor1 = self.parseProduct()
-        while self.currentChar == '+':
+        while self.currentChar in ["+", "-"]:
+            op = self.currentChar
             self.incrementPointer()
             factor2 = self.parseProduct()
-            factor1 += factor2
+            if op == "+":
+                factor1 += factor2
+            elif op == "-":
+                factor1 -= factor2
         return factor1
             
 
